@@ -13,7 +13,7 @@ var parser = new mditor.Parser();
 
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB).connection.on('error', console.log);
+mongoose.connect('your moongodb address').connection.on('error', console.log);
 require('./model/blog');
 
 var routes = require('./routes/index');
