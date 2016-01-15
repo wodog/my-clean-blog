@@ -14,9 +14,16 @@
       {{/each}}
       <hr>
       <!-- Pager -->
-      <ul class="pager">
+      <ul class="pager" page="{{page}}">
+        {{#equal page 1}}
+        <li class="previous" style="display:none">
+        {{else}}
+        <li class="previous">
+        {{/equal}}
+          <a href="?page={{minus page 1}}">Newer Posts &larr;</a>
+        </li>
         <li class="next">
-          <a href="#">Older Posts &rarr;</a>
+          <a href="?page={{plus page 1}}">Older Posts &rarr;</a>
         </li>
       </ul>
     </div>

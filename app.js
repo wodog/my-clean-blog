@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 
 var hbs = require('hbs');
 var moment = require('moment');
+var mditor = require("mditor");
+var parser = new mditor.Parser();
+
 
 
 var mongoose = require('mongoose');
@@ -26,6 +29,22 @@ app.set('view engine', 'hbs');
 hbs.registerHelper('moment', function(v) {
   return moment(v).format('MM-DD HH:mm');
 });
+hbs.registerHelper('plus', function(v1, v2) {
+  return Number.parseInt(v1) + Number.parseInt(v2);
+});
+hbs.registerHelper('minus', function(v1, v2) {
+  return Number.parseInt(v1) - Number.parseInt(v2);
+});
+hbs.registerHelper('equal', function(v1, v2, options) {
+  if(v1 == v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+hbs.registerHelper('md', function(v) {
+  return parser.parse(v);
+});
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

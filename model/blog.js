@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const blogSchema = new Schema({
+const postgSchema = new Schema({
   title: {type: String},
   content: {type: String},
   author: {type: String},
@@ -12,7 +12,7 @@ const blogSchema = new Schema({
 });
 
 
-blogSchema.statics = {
+postgSchema.statics = {
   list: function(opts, cb){
     const creteria = opts.creteria || {};
     const select = opts.select || '';
@@ -23,6 +23,6 @@ blogSchema.statics = {
   }
 };
 
-blogSchema.index({createDate: -1});
+postgSchema.index({createDate: -1});
 
-mongoose.model('Blog', blogSchema);
+mongoose.model('Post', postgSchema);
