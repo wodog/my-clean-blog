@@ -1,0 +1,59 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+      <h1 >
+        Posts
+        <div class=" text-right">
+          <a id="update_btn" class="btn btn-default">Update</a>
+          <a id="delete_btn" class="btn btn-default">Delete</a>
+        </div>
+      </h1>
+
+    <!-- <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol> -->
+  </section>
+
+  <!-- Main content -->
+  <section id="posts" class="content">
+
+    <!-- Your Page Content Here -->
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            Post Name
+          </td>
+          <td>
+            author
+          </td>
+          <td>
+            createDate
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each posts}}
+        <tr>
+          <td style="display:none">
+            {{_id}}
+          </td>
+          <td>
+            {{title}}
+          </td>
+          <td>
+            {{author}}
+          </td>
+          <td>
+            {{moment createDate}}
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

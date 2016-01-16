@@ -13,7 +13,7 @@ var parser = new mditor.Parser();
 
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB).connection.on('error', console.log);
+mongoose.connect('mongodb://121.42.62.149:32768/clean-blog').connection.on('error', console.log);
 require('./model/post');
 
 var routes = require('./routes/index');
@@ -44,6 +44,12 @@ hbs.registerHelper('equal', function(v1, v2, options) {
 hbs.registerHelper('md', function(v) {
   return parser.parse(v);
 });
+hbs.registerHelper('equal_return', function(v1, v2, v3) {
+  if(v1 == v2) {
+    return v3;
+  }
+  return;
+})
 
 
 // uncomment after placing your favicon in /public
