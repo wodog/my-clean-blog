@@ -23,7 +23,7 @@ $(function() {
 
       $.ajax({
         method: 'POST',
-        url: '/del',
+        url: '/admin/delete',
         data: data,
         success: function(data){
           if(data.errCode ==0) {
@@ -39,7 +39,7 @@ $(function() {
         var current_tr = $('#posts table tbody .active td');
         var _id = $(current_tr[0]).text().trim()
 
-        location.href='/write?_id=' + _id;
+        location.href='/admin/write?_id=' + _id;
 
         // $.ajax({
         //   method: 'POST',

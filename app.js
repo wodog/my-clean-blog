@@ -1,59 +1,35 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+'use strict';
 
-var hbs = require('hbs');
-var moment = require('moment');
-var mditor = require("mditor");
-var parser = new mditor.Parser();
-
+const config = require('./config');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const compress = require('compression');
 
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://121.42.62.149:32768/clean-blog').connection.on('error', console.log);
+const mongoose = require('mongoose');
+mongoose.connect(config.db).connection.on('error', console.log);
 require('./model/post');
 
-var routes = require('./routes/index');
 
-var app = express();
+const app = express();
+
 
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+require('./common/register');
 
-hbs.registerHelper('moment', function(v) {
-  return moment(v).format('MM-DD HH:mm');
-});
-hbs.registerHelper('plus', function(v1, v2) {
-  return Number.parseInt(v1) + Number.parseInt(v2);
-});
-hbs.registerHelper('minus', function(v1, v2) {
-  return Number.parseInt(v1) - Number.parseInt(v2);
-});
-hbs.registerHelper('equal', function(v1, v2, options) {
-  if(v1 == v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
-hbs.registerHelper('md', function(v) {
-  return parser.parse(v);
-});
-hbs.registerHelper('equal_return', function(v1, v2, v3) {
-  if(v1 == v2) {
-    return v3;
-  }
-  return;
-})
 
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(compress());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -62,7 +38,9 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', require('./routes/index'));
+app.use('/admin', require('./routes/admin'));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
