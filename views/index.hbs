@@ -9,21 +9,27 @@
               {{title}}
             </h2>
           </a>
-          <p class="post-meta">Posted by <a href="#">{{author}}</a> on {{moment createDate}}</p>
+          <p class="post-meta">Posted by <a href="/about">{{author}}</a> on {{moment createDate}}</p>
         </div>
         <hr>
       {{/each}}
+
+
       <!-- Pager -->
       <ul class="pager" page="{{page}}">
         {{#equal page 1}}
-        <li class="previous" style="display:none">
-        {{else}}
-        <li class="previous">
+          <li class="previous" style="display:none">
+            {{else}}
+              <li class="previous">
         {{/equal}}
-          <a href="?page={{minus page 1}}">Newer Posts &larr;</a>
+        <a href="?page={{minus page 1}}">Newer Posts &larr;</a>
         </li>
-        <li class="next">
-          <a href="?page={{plus page 1}}">Older Posts &rarr;</a>
+        {{#equal page maxPage}}
+          <li class="next" style="display:none">
+            {{else}}
+              <li class="next">
+        {{/equal}}
+        <a href="?page={{plus page 1}}">Older Posts &rarr;</a>
         </li>
       </ul>
     </div>

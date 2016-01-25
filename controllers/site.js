@@ -8,13 +8,15 @@ exports.index = function(req, res, next) {
   Post.list({
     page: page
   }, function(err, data) {
-
-    res.render('index', {
-      title: 'Clean Blog',
-      describe: 'A Clean Blog Theme by wodog',
-      blogs: data,
-      image: 'home',
-      page: page
+    Post.count({}, function(err, counts) {
+      res.render('index', {
+        title: 'Clean Blog',
+        describe: 'A Clean Blog Theme by wodog',
+        blogs: data,
+        image: 'home',
+        page: page,
+        maxPage: Math.ceil(counts/5)
+      });
     });
   });
 };
