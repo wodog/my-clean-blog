@@ -21,10 +21,11 @@
       <!-- Pager -->
       <ul class="pager" page="{{page}}">
 
-        <li class="previous" {{#equal page 1}} style="display:none" {{/equal}}>
+        <li class="previous" {{#equal page 1}} style="visibility:hidden" {{/equal}}>
           <a href="?page={{minus page 1}}">Newer Posts &larr;</a>
         </li>
-        <li class="next" {{#equal page last}} style="display:none" {{/equal}}>
+        <li>{{page}} / {{last}}</li>
+        <li class="next" {{#equal page last}} style="visibility:hidden" {{/equal}}>
           <a href="?page={{plus page 1}}">Older Posts &rarr;</a>
         </li>
 

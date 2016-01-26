@@ -6,7 +6,7 @@ const mditor = require("mditor");
 const parser = new mditor.Parser();
 
 hbs.registerHelper('moment', function(v) {
-  return moment(v).format('MM-DD HH:mm');
+  return moment(v).format('YYYY-MM-DD HH:mm');
 });
 hbs.registerHelper('plus', function(v1, v2) {
   return Number.parseInt(v1) + Number.parseInt(v2);
