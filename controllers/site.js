@@ -4,18 +4,20 @@ const Post = require('mongoose').model('Post');
 
 exports.index = function(req, res, next) {
   const page = req.query.page || 1;
+  const limit = req.query.limit || 5;
 
   Post.list({
-    page: page
+    page: page,
+    limit: limit
   }, function(err, data) {
     Post.count({}, function(err, counts) {
       res.render('index', {
-        title: 'Clean Blog',
-        describe: 'A Clean Blog Theme by wodog',
+        title: 'Prose Blog',
+        describe: 'by wodog',
         blogs: data,
         image: 'home',
         page: page,
-        maxPage: Math.ceil(counts/5)
+        last: Math.ceil(counts / limit)
       });
     });
   });

@@ -15,7 +15,7 @@ hbs.registerHelper('minus', function(v1, v2) {
   return Number.parseInt(v1) - Number.parseInt(v2);
 });
 hbs.registerHelper('equal', function(v1, v2, options) {
-  if(v1 == v2) {
+  if (v1 == v2) {
     return options.fn(this);
   }
   return options.inverse(this);
@@ -24,8 +24,14 @@ hbs.registerHelper('md', function(v) {
   return parser.parse(v);
 });
 hbs.registerHelper('equal_return', function(v1, v2, v3) {
-  if(v1 == v2) {
+  if (v1 == v2) {
     return v3;
   }
   return;
+});
+
+hbs.registerHelper('excerpt', function(content) {
+  var result = content.replace(/[#\(\)\[\]\n!`]+/g, ' ');
+  if (result.length > 50) result = result.slice(0, 50) + '...';
+  return result;
 });

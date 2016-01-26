@@ -8,8 +8,11 @@
             <h2 class="post-title">
               {{title}}
             </h2>
+            <h3 class="post-subtitle">
+              {{excerpt content}}
+            </h3>
           </a>
-          <p class="post-meta">Posted by <a href="/about">{{author}}</a> on {{moment createDate}}</p>
+          <p class="post-meta">Posted by {{author}} on {{moment createDate}}</p>
         </div>
         <hr>
       {{/each}}
@@ -17,20 +20,14 @@
 
       <!-- Pager -->
       <ul class="pager" page="{{page}}">
-        {{#equal page 1}}
-          <li class="previous" style="display:none">
-            {{else}}
-              <li class="previous">
-        {{/equal}}
-        <a href="?page={{minus page 1}}">Newer Posts &larr;</a>
+
+        <li class="previous" {{#equal page 1}} style="display:none" {{/equal}}>
+          <a href="?page={{minus page 1}}">Newer Posts &larr;</a>
         </li>
-        {{#equal page maxPage}}
-          <li class="next" style="display:none">
-            {{else}}
-              <li class="next">
-        {{/equal}}
-        <a href="?page={{plus page 1}}">Older Posts &rarr;</a>
+        <li class="next" {{#equal page last}} style="display:none" {{/equal}}>
+          <a href="?page={{plus page 1}}">Older Posts &rarr;</a>
         </li>
+
       </ul>
     </div>
   </div>
