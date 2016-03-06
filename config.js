@@ -5,7 +5,7 @@ const path = require('path');
 const config = {
 
   // mongodb 配置
-  db: 'mongodb://121.42.62.149:32768/clean-blog',
+  db: 'mongodb://localhost/clean-blog',
 
   // redis 配置
   redis_host: '121.42.62.149',
